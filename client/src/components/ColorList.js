@@ -20,11 +20,11 @@ const ColorList = ({ colors, updateColors }) => {
     e.preventDefault();
     // Make a put request to save your updated color
     // think about where will you get the id from...
-    // where is is saved right now?
+    // where is it saved right now?
   };
 
   const deleteColor = color => {
-    // make a delete request to delete this color
+    // make a delete request to delete a color
   };
 
   return (
