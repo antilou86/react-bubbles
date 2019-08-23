@@ -21,23 +21,22 @@ const ColorList = ({ colors, updateColors }) => {
     // Make a put request to save your updated color
     // think about where will you get the id from...
     // where is it saved right now?
-    axiosWithAuth
+    axiosWithAuth()
       .put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
       .then(res => {
-        console.log(res.data.colors);
-        let color = res.data.color;
-        updateColors({ ...colors, color });
+        console.log(res.data);
+        let color = res.data;
+        updateColors({ ...colors[colorToEdit.id + 1], color });
       })
       .catch()
   };
 
   const deleteColor = color => {
     // make a delete request to delete a color
-    axiosWithAuth
-      .put(`http://localhost:5000/api/colors/${color.id}`)
+    axiosWithAuth()
+      .delete(`http://localhost:5000/api/colors/${color.id}`)
       .then(res => {
-        console.log('results from delete request,', res.data.colors)
-        updateColors(res.data.colors);
+        console.log('results from delete request,', res)
       })
       .catch(err => console.log('problem deleting- check it, ', err))
   };
@@ -46,7 +45,7 @@ const ColorList = ({ colors, updateColors }) => {
     <div className="colors-wrap">
       <p>colors</p>
       <ul>
-        {colors.map(color => (
+        {colors && colors.map(color => (
           <li key={color.color} onClick={() => editColor(color)}>
             <span>
               <span className="delete" onClick={() => deleteColor(color)}>
